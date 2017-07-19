@@ -54,6 +54,8 @@
     <Compile Include="Classes\Hours.cs" />
     <Compile Include="Classes\Lamp.cs" />
     <Compile Include="Classes\Minutes.cs" />
+    <Compile Include="Classes\Seconds.cs" />
+    <Compile Include="Classes\Time.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BDD\BerlinClockFeatureSteps.feature.cs">
       <AutoGen>True</AutoGen>
