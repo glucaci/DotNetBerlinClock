@@ -3,11 +3,11 @@
 namespace BerlinClock
 {
     /// <summary>
-    /// Representing a 24h format time with support for 24:00:00 representation.
+    /// Representing a time instant in 24h format with support for 24:00:00 midnight representation.
     /// </summary>
     public class Time
     {
-        public Time(short hours, short minutes, short seconds)
+        private Time(short hours, short minutes, short seconds)
         {
             Hours = hours;
             Minutes = minutes;
