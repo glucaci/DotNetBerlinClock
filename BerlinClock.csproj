@@ -53,6 +53,7 @@
     <Compile Include="Classes\Clock.cs" />
     <Compile Include="Classes\Hours.cs" />
     <Compile Include="Classes\Lamp.cs" />
+    <Compile Include="Classes\LampRowExtensions.cs" />
     <Compile Include="Classes\Minutes.cs" />
     <Compile Include="Classes\Seconds.cs" />
     <Compile Include="Classes\Time.cs" />

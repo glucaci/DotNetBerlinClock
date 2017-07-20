@@ -2,29 +2,23 @@
 {
     public class Lamp
     {
+        public static readonly Lamp Red = new Lamp("R");
+        public static readonly Lamp Yellow = new Lamp("Y");
+
         private const string DefaultValue = "O";
 
-        private readonly int _multiplier;
         private readonly string _activeValue;
         private readonly bool _isOn = false;
 
-        public Lamp(int multiplier, string activeValue, bool isOn = false)
+        private Lamp(string activeValue, bool isOn = false)
         {
-            _multiplier = multiplier;
             _activeValue = activeValue;
             _isOn = isOn;
         }
 
-        public int Multiplier => _multiplier;
-
         public Lamp TurnOn()
         {
-            return new Lamp(_multiplier, _activeValue, isOn: true);
-        }
-
-        public Lamp TurnOff()
-        {
-            return new Lamp(_multiplier, _activeValue, isOn: false);
+            return new Lamp(_activeValue, isOn: true);
         }
 
         public override string ToString()

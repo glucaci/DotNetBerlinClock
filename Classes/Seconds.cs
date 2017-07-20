@@ -1,18 +1,16 @@
-﻿using System;
-
-namespace BerlinClock
+﻿namespace BerlinClock
 {
     public class Seconds
     {
-        private const string ActiveValue = "Y";
-
-        private readonly Lamp _lamp;
+        private readonly Lamp _lamp = Lamp.Yellow;
 
         public Seconds(Time time)
         {
             var isLampActive = time.Seconds % 2 == 0;
-
-            _lamp = new Lamp(1, ActiveValue, isLampActive);
+            if (isLampActive)
+            {
+                _lamp = _lamp.TurnOn();
+            }
         }
 
         public override string ToString()
