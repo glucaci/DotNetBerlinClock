@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 
 namespace BerlinClock
 {
@@ -8,8 +7,6 @@ namespace BerlinClock
     /// </summary>
     public class Time
     {
-        private static readonly Regex Pattern = new Regex(@"^([0-9]|0[0-9]|1[0-9]|2[0-4]):[0-5][0-9]:[0-5][0-9]$");
-
         public Time(short hours, short minutes, short seconds)
         {
             Hours = hours;
@@ -23,18 +20,43 @@ namespace BerlinClock
 
         public static Time Parse(string time)
         {
-            ValidateInput(time);
-
             var input = time.Split(':');
-            return new Time(short.Parse(input[0]), short.Parse(input[1]), short.Parse(input[2]));
+
+            var hours = GetValueInRange(input[0], 0, 24);
+            var minutes = GetValueInRange(input[1], 0, 59);
+            var seconds = GetValueInRange(input[2], 0, 59);
+
+            ValidateMidnightFormat(hours, minutes, seconds);
+
+            return new Time(hours, minutes, seconds);
         }
 
-        private static void ValidateInput(string time)
+        private static short GetValueInRange(string input, short min, short max)
         {
-            var parsedTime = Pattern.Match(time);
-            if (!parsedTime.Success)
+            short value;
+            if (short.TryParse(input, out value))
             {
-                throw new InvalidOperationException("No valid input for time format HH:mm:ss");
+                if (value < min)
+                {
+                    throw new ArgumentException($"Input cannot be smaller than {min}");
+                }
+
+                if (value > max)
+                {
+                    throw new ArgumentException($"Input cannot be bigger than {max}");
+                }
+
+                return value;
+            }
+
+            throw new InvalidOperationException("Invalid input format.");
+        }
+
+        private static void ValidateMidnightFormat(short hours, short minutes, short seconds)
+        {
+            if (hours > 23 && (minutes != 0 || seconds != 0))
+            {
+                throw new InvalidOperationException("Invalid time value.");
             }
         }
     }

@@ -8,15 +8,9 @@ namespace BerlinClock
 
         private readonly Lamp _lamp;
 
-        public Seconds(int seconds)
+        public Seconds(Time time)
         {
-            if (seconds < 0)
-                throw new ArgumentException("Cannot be smaller than 0", nameof(seconds));
-
-            if (seconds > 59)
-                throw new ArgumentException("Cannot be bigger than 59", nameof(seconds));
-
-            var isLampActive = seconds % 2 == 0;
+            var isLampActive = time.Seconds % 2 == 0;
 
             _lamp = new Lamp(1, ActiveValue, isLampActive);
         }

@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="Classes\ITimeConverter.cs" />
     <Compile Include="Classes\TimeConverter.cs" />
+    <Compile Include="Tests\TimeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

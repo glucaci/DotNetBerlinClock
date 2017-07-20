@@ -10,9 +10,9 @@ namespace BerlinClock
 
         public Clock(Time time)
         {
-            _hours = new Hours(time.Hours);
-            _minutes = new Minutes(time.Minutes);
-            _seconds = new Seconds(time.Seconds);
+            _hours = new Hours(time);
+            _minutes = new Minutes(time);
+            _seconds = new Seconds(time);
         }
 
         public override string ToString()

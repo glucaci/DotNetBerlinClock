@@ -12,17 +12,11 @@ namespace BerlinClock
         private readonly IList<Lamp> _firstRow;
         private readonly IList<Lamp> _secondRow;
 
-        public Hours(int hours)
+        public Hours(Time time)
         {
-            if (hours < 0)
-                throw new ArgumentException("Cannot be smaller than 0", nameof(hours));
-
-            if (hours > 24)
-                throw new ArgumentException("Cannot be bigger than 24", nameof(hours));
-
             _firstRow = new List<Lamp> { new Lamp(5, ActiveValue), new Lamp(5, ActiveValue), new Lamp(5, ActiveValue), new Lamp(5, ActiveValue) };
 
-            var firstRowActiveLamps = hours / 5;
+            var firstRowActiveLamps = time.Hours / 5;
             for (int i = 0; i < firstRowActiveLamps; i++)
             {
                 _firstRow[i] = _firstRow[i].TurnOn();
@@ -30,7 +24,7 @@ namespace BerlinClock
 
             _secondRow = new List<Lamp> { new Lamp(1, ActiveValue), new Lamp(1, ActiveValue), new Lamp(1, ActiveValue), new Lamp(1, ActiveValue) };
 
-            var secondRowActiveLamps = hours % 5;
+            var secondRowActiveLamps = time.Hours % 5;
             for (int i = 0; i < secondRowActiveLamps; i++)
             {
                 _secondRow[i] = _secondRow[i].TurnOn();
